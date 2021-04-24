@@ -10,7 +10,7 @@ import ptBR from 'date-fns/locale/pt-BR'
 import { convertDurationToTimeString } from '../utils/convertDurationToTimeString'
 
 import styles from './home.module.scss'
-// import { usePlayer } from '../contexts/PlayerContext'
+import { usePlayer } from '../contexts/PlayerContext'
 import Head from 'next/head'
 
 type Episode = {
@@ -30,7 +30,7 @@ type HomeProps = {
 }
 
 export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
-  // const { playList } = usePlayer()
+  const { playList } = usePlayer()
 
   const episodeList = [...latestEpisodes, ...allEpisodes]
 
@@ -64,7 +64,7 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
 
               <button
                 type='button'
-                // onClick={() => playList(episodeList, index)}
+                onClick={() => playList(episodeList, index)}
               >
                 <img src='/play-green.svg' alt='Tocar episódio' />
               </button>
@@ -109,9 +109,9 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                 <td>
                   <button
                     type='button'
-                    // onClick={() =>
-                    // playList(episodeList, index + latestEpisodes.length)
-                    // }
+                    onClick={() =>
+                      playList(episodeList, index + latestEpisodes.length)
+                    }
                   >
                     <img src='/play-green.svg' alt='Tocar episódio' />
                   </button>

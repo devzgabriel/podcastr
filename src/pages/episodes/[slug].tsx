@@ -8,7 +8,7 @@ import { convertDurationToTimeString } from '../../utils/convertDurationToTimeSt
 import styles from './episode.module.scss'
 
 import { useRouter } from 'next/router'
-// import { usePlayer } from '../../contexts/PlayerContext'
+import { usePlayer } from '../../contexts/PlayerContext'
 import Head from 'next/head'
 
 type Episode = {
@@ -28,7 +28,7 @@ type EpisodeProps = {
 }
 
 export default function Episode({ episode }: EpisodeProps) {
-  // const { play } = usePlayer()
+  const { play } = usePlayer()
   const router = useRouter()
 
   if (router.isFallback) {
@@ -53,7 +53,7 @@ export default function Episode({ episode }: EpisodeProps) {
           src={episode.thumbnail}
           objectFit='cover'
         />
-        <button type='button' onClick={() => {}}>
+        <button type='button' onClick={() => play(episode)}>
           <img src='/play.svg' alt='Tocar episódio' />
         </button>
       </div>
